@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loot <img src="loot_logo.png" alt="Loot Logo" style="width: 24px; height: 24px;"></title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+          /* Adjust width as necessary */
+        }
+
+        .button {
+            border: 1px solid #294DE4;
+            padding: 20px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #FFFFFF;
+            color: black;
+        }
+
+        .button.blue {
+            background-color: #294DE4;
+            border: none;
+        }
+
+        .button.white {
+            background-color: #FFFFFF;
+            border: 1px solid #294DE4;
+        }
+
+        .button:not(:last-child) {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="button blue"></button>
+        <button class="button white">Account</button>
+        <button class="button white">My shop</button>
+        <button class="button white">Loot</button>
+        <button class="button white">Explore</button>
+        <button class="button white">Rewards</button>
+        <button class="button blue"></button>
+    </div>
+</body>
+</html>
