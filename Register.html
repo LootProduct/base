@@ -3,14 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script src="script.js"></script>
     <title>Register</title>
 </head>
 <body>
-    
+    <div class="Ritendra">
+          <div class="login">
+              <a>Sign_In</a>
+              <input type="text" id="Susername" placeholder="Enter Username" required="required">
+              <input type="password" id="Spassword" placeholder="Enter password" required="required">
+              <button id="logged" type="submit">Login</button>
+              <a onclick="addsignup()" href="#">Register yourself</a>
+          </div>
+      <div class="signup" style="display: none;">
+              <a>Sign_Up</a>
+              <input type="text" id="Eusername" placeholder="Enter Username" required="required">
+              <input type="email" id="Email" placeholder="Email Id" required="required">
+              <input type="password" id="Npassword" placeholder="New password">
+              <input type="password" id="Cpassword" placeholder="Confirm password">
+              <input id="signed" type="submit" value="Sign Up">
+              <a onclick="addsignin()" href="#">Want to SignIn?</a>
+      </div>
+    </div>
 </body>
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+
     const firebaseConfig = {
       apiKey: "AIzaSyClf6W3B2nesvjfZtRSMcjbt6NRp6uy-Po",
       authDomain: "lootbase-4d01f.firebaseapp.com",
@@ -21,8 +39,53 @@
       measurementId: "G-YQK38EMPJK"
     };
   
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
+    import { getDatabase, ref, child, get, set, update, remove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    const db=getDatabase();
+    let Susername=document.getElementById('Susername');
+    let Spassword=document.getElementById('Spassword');
+    let logged=document.getElementById('logged');
+    let signed=document.getElementById('signed');
+    function verify(){
+       get(child(ref(db),'LootUsers/' + Susername.value)).then((snapshot)=>{
+        let present=Boolean(snapshot.exists());
+        if(present){
+          if(Spassword.value==snapshot.val().password){
+            alert("Successfull login!!");
+          }
+          else{
+            alert("Wrong Entry!!");
+          }
+        }
+        else {
+          alert("Invalid");
+        }
+       }).catch((error)=>{
+           console.log(error);
+        });
+    }
+    let username=document.getElementById('Eusername');
+    let userpassword=document.getElementById('Npassword');
+    let Cpassword=document.getElementById('Cpassword');
+    let Email=document.getElementById('Email');
+    function New() {
+      console.log("Entered New function");
+      if(userpassword.value==Cpassword.value){
+      set(ref(db,'LootUsers/' + username.value),{
+           username: username.value,
+           Email: Email.value,
+           password: userpassword.value,
+        })
+        .then(()=>{
+          alert("SignUp Succesfully! You can Login Now");
+        })
+        .catch((error)=>{
+          alert("Unsuccesfull attempt!!");
+        });
+      } else {alert("New Password and Confirm Password should be same");}
+    }
+    document.querySelector('.signup').style.display='none';
+    logged.addEventListener('click',verify);
+    signed.addEventListener('click',New);
   </script>
 </html>
