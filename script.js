@@ -1,4 +1,3 @@
-let Ritendra=document.querySelector(".Ritendra");
 function addsignin(){
     document.querySelector('.login').style.display='';
     document.querySelector('.signup').style.display='none';
