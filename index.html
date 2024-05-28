@@ -69,8 +69,8 @@
             <img src="loot_logo.png" alt="Loot Logo">
         </div>
         <div class="buttons">
-            <button onclick="window.location.href='dashboard.html'">Register</button>
-            <button onclick="window.location.href='dashboard.html'">Log in</button>
+            <button onclick="register_or_login()">Register</button>
+            <button onclick="register_or_login()">Log in</button>
         </div>
     </div>
     <div class="content">
@@ -78,4 +78,9 @@
         <h1>& Grow with us...</h1>
     </div>
 </body>
+<script>
+    function register_or_login() {
+        window.location.href='/Register.html';
+    }
+</script>
 </html>
